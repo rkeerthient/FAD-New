@@ -15,7 +15,6 @@ export enum Category {
   ORDER = "Order (Restaurant)",
   TAKEOUT = "Takeout",
   PICKUP = "Pickup (Restaurant)",
-  RESERVE = "Reserve (Restaurant)",
   MENU = "Menu",
   APPOINTMENT = "Appointment",
   PORTFOLIO = "Portfolio",
