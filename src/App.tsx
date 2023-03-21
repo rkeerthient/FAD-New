@@ -50,11 +50,11 @@ function App() {
       >
         <div className="bg-neutral-300/30 absolute w-full h-full"></div>
       </Transition>
-      <div className="w-full bg-primary sticky top-0 flex h-14">
+      <div className="w-full sticky top-0 flex h-14">
         <a href="/" className="my-auto mx-auto text-white w-3/4 flex">
           <img
             className="h-8"
-            src="https://doctors.columbia.edu/permanent-b0b701/assets/images/complete-columbia-logo.484f46a0.svg"
+            src="https://healthcare-support-demo.yextdemos.com.pagescdn.com/logo_synergic.ce4665c2ed861fdda4efab8b8a5fd0a0.png"
           />
           <div className="ml-auto my-auto"></div>
         </a>

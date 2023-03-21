@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import {
   Matcher,
   useSearchActions,
-  SelectableStaticFilter
-} from '@yext/search-headless-react';
+  SelectableStaticFilter,
+} from "@yext/search-headless-react";
 
 const moreFilters: SelectableStaticFilter[] = [
   {
@@ -14,22 +14,11 @@ const moreFilters: SelectableStaticFilter[] = [
       kind: "fieldValue",
       matcher: Matcher.Equals,
       value: "true",
-    }
-  },
-  {
-    displayName: "Virtual Visits",
-    selected: false,
-    filter: {
-      fieldId: "c_cUIMCVirtualVisits",
-      kind: "fieldValue",
-      matcher: Matcher.Equals,
-      value: "true",
     },
-  }
-]
+  },
+];
 
 export const MoreFilters = () => {
-
   const searchActions = useSearchActions();
 
   useEffect(() => {
@@ -40,21 +29,20 @@ export const MoreFilters = () => {
     searchActions.setFilterOption({
       filter: filter.filter,
       selected: !filter.selected,
-    })
+    });
     searchActions.executeVerticalQuery();
-  }
+  };
 
   return (
-    <div className='flex flex-row gap-x-4'>
-      {moreFilters.map(filter => (
-        <div
-          key={filter.displayName}
-          className='flex flex-row gap-x-2'>
+    <div className="flex flex-row gap-x-4">
+      {moreFilters.map((filter) => (
+        <div key={filter.displayName} className="flex flex-row gap-x-2">
           <input type="checkbox" onClick={() => handleFilterClick(filter)} />
-          <label className='text-sm tracking-widest font-thin'>{filter.displayName}</label>
+          <label className="text-sm tracking-widest font-thin">
+            {filter.displayName}
+          </label>
         </div>
-      ))
-      }
+      ))}
     </div>
-  )
-}
+  );
+};

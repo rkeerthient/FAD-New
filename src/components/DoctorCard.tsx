@@ -151,7 +151,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ result }) => {
                 </a>
               </div>
             )}
-            <button className="shadow-sm hover:shadow-lg transition-shadow duration-150 bg-primary hover:bg-blue-900 py-1 lg:py-2 px-4 rounded-md font-medium  text-white border border-primary">
+            <button className="shadow-sm hover:shadow-lg transition-shadow duration-150 bg-primary bg-blue-400 hover:bg-blue-500 py-1 lg:py-2 px-4 rounded-md font-medium  text-white border border-primary">
               Book Online
             </button>
             <button className="shadow-sm hover:shadow-lg transition-shadow duration-150 bg-white py-1 lg:py-2 px-4 rounded-md font-medium  text-primary border border-primary">
@@ -159,7 +159,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ result }) => {
             </button>
           </div>
         </div>
-        <div className="mt-6 lg:ml-36 text-neutral-500 font-light flex flex-row gap-x-48">
+        <div className="mt-6 lg:ml-36 text-neutral-500 font-light flex flex-row gap-x-16">
           <div>
             <TitledList
               title="Location Information"
