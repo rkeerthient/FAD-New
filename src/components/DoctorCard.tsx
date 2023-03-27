@@ -70,9 +70,10 @@ const RenderHours = ({ title, hours }: { title: string; hours: any }) => {
       <h3 className="uppercase text text-xs mb-2 text-neutral-700 font-bold tracking-widest">
         {title}
       </h3>
-      {Object.keys(hours).map((item: string) => {
+      {Object.keys(hours).map((item: string, index: any) => {
         return (
           <div
+            key={index}
             className={`grid grid-cols-2 gap-3 ${
               todayDay === item && `bg-gray-300`
             }`}
@@ -104,8 +105,6 @@ const RenderHours = ({ title, hours }: { title: string; hours: any }) => {
 
 const DoctorCard: React.FC<DoctorCardProps> = ({ result }) => {
   const doctor = result.rawData as unknown as HealthcareProfessional;
-  console.log(JSON.stringify(doctor));
-
   const { address } = doctor;
   const [expanded, setExpanded] = useState(false);
   return (

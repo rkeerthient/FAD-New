@@ -33,13 +33,9 @@ interface FieldMapper {
 
 const fieldMappers: FieldMapper[] = [
   {
-    fieldId: "builtin.medicalSpecialty",
-    queryParam: "sp",
-  },
-  {
     fieldId: "c_relatedSpecialty.name",
     queryParam: "cp",
-  } 
+  },
 ];
 
 searcher.executeFilterSearch = async (
@@ -192,40 +188,6 @@ ReactDOM.render(
             }
           });
 
-          // Location filter handling is unique
-          const locationFilter = state.filters.static?.find((f) => {
-            return (
-              f.filter.kind === "fieldValue" &&
-              f.selected &&
-              ["builtin.region", "builtin.location"].includes(f.filter.fieldId)
-            );
-          });
-          const locationName = locationFilter?.displayName;
-          locationName && params.append("q", locationName);
-          if (locationFilter?.filter.kind !== "fieldValue") {
-            throw new Error("Location filter is not a field value filter");
-          }
-          // lt (locationType) param indicates whether the filter is on region or location
-          // (We can't always use builtin.location because it's possible to have a location filter on a region)
-          const locationFilterType =
-            locationFilter.filter.fieldId === "builtin.location"
-              ? "loc"
-              : "reg";
-          params.append("lt", locationFilterType);
-          if (locationFilter.filter.matcher == Matcher.Near) {
-            // Why doesn't typescript do this for me automatically?
-            const { lat, lng, radius } = locationFilter.filter
-              .value as NearFilterValue;
-            params.append("lat", lat.toString());
-            params.append("lng", lng.toString());
-            params.append("radius", radius.toString());
-          } else if (locationFilter.filter.matcher == Matcher.Equals) {
-            if (typeof locationFilter.filter.value === "string") {
-              params.append("qp", locationFilter.filter.value);
-            } else {
-              throw new Error("Location filter value is not a string");
-            }
-          }
           return params;
         },
       }}

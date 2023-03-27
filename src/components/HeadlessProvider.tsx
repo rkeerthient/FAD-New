@@ -55,6 +55,8 @@ const InternalRouter = ({
         valueAccessor: (s) => s,
         callback: (state: any) => {
           if (serializeState) {
+            console.log(JSON.stringify(serializeState(state)));
+
             const params = serializeState(state);
             window.history.pushState({}, "", `?${params.toString()}`);
           }

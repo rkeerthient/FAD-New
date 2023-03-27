@@ -85,7 +85,7 @@ const TopSpecialties = (): JSX.Element => {
                   filter: {
                     kind: "fieldValue",
                     matcher: Matcher.Equals,
-                    fieldId: "builtin.medicalSpecialty",
+                    fieldId: "c_relatedSpecialty.name",
                     value: specialty.specialty ?? specialty.name,
                   },
                 };
