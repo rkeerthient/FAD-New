@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { cloneDeep } from "lodash";
-import { SearchActions, SearchHeadless, SearchHeadlessProvider, State } from "@yext/search-headless-react";
+import {
+  SearchActions,
+  SearchHeadless,
+  SearchHeadlessProvider,
+  State,
+} from "@yext/search-headless-react";
 import { useSearchActions, useSearchState } from "@yext/search-headless-react";
 
 export interface HeadlessProviderProps {
@@ -15,7 +20,7 @@ export interface HeadlessProviderProps {
       getState: typeof useSearchState
     ) => void;
     updateCadence: "onStateChange" | "onSearch";
-  }
+  };
   children: React.ReactNode;
 }
 
@@ -26,11 +31,10 @@ const InternalRouter = ({
   routing,
   onSearch,
   onLoad,
-  children
+  children,
 }: InternalRouterProps): JSX.Element => {
-
   const searchActions = useSearchActions();
-  const searchState = useSearchState(s => s);
+  const searchState = useSearchState((s) => s);
   const getState = useSearchState;
 
   // Fetch the URL params when the page loads, but no after that
@@ -48,15 +52,15 @@ const InternalRouter = ({
     if (routing && routing.updateCadence === "onStateChange") {
       const { serializeState } = routing;
       searchActions.addListener({
-        valueAccessor: s => (s),
-        callback: (state) => {
+        valueAccessor: (s) => s,
+        callback: (state: any) => {
           if (serializeState) {
             const params = serializeState(state);
             window.history.pushState({}, "", `?${params.toString()}`);
           }
-        }
-      })
-    };
+        },
+      });
+    }
   }, []);
 
   // Run whatever code is in the onLoad prop
@@ -66,11 +70,7 @@ const InternalRouter = ({
     }
   }, []);
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 const HeadlessProvider = ({
@@ -78,11 +78,9 @@ const HeadlessProvider = ({
   routing,
   onSearch,
   onLoad,
-  children
+  children,
 }: HeadlessProviderProps): JSX.Element => {
-
   const newSearcher = cloneDeep(searcher);
-
 
   if (routing && routing.updateCadence === "onSearch") {
     const { serializeState } = routing;
@@ -90,7 +88,7 @@ const HeadlessProvider = ({
       const params = serializeState(searcher.state);
       window.history.pushState({}, "", `?${params.toString()}`);
       return searcher.executeVerticalQuery();
-    }
+    };
   }
 
   if (onSearch) {
@@ -98,20 +96,16 @@ const HeadlessProvider = ({
       const result = await searcher.executeVerticalQuery();
       onSearch(searcher.state, searcher);
       return result;
-    }
+    };
   }
 
   return (
     <SearchHeadlessProvider searcher={newSearcher}>
-      <InternalRouter
-        onLoad={onLoad}
-        onSearch={onSearch}
-        routing={routing}
-      >
+      <InternalRouter onLoad={onLoad} onSearch={onSearch} routing={routing}>
         {children}
       </InternalRouter>
     </SearchHeadlessProvider>
-  )
-}
+  );
+};
 
 export default HeadlessProvider;

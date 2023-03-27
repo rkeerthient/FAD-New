@@ -60,10 +60,13 @@ function App() {
         </a>
       </div>
       <div className="w-full flex flex-col relative">
-        <div className="w-full bg-neutral-100 h-56 absolute z-10" />
+        <div
+          className="w-full h-56 absolute z-10"
+          style={{ background: "#00008B" }}
+        />
         <div className="mx-auto flex absolute z-10 w-full">
           <div className="w-11/12 lg:w-3/4 mx-auto flex flex-col">
-            <h1 className="mx-auto uppercase mt-14 mb-8 text-4xl text-neutral-700 font-bold tracking-widest">
+            <h1 className="mx-auto uppercase mt-14 mb-8 text-4xl text-neutral-700 font-bold tracking-widest text-white">
               Find a Doctor
             </h1>
             <div className="w-full rounded-md shadow-xl bg-white border border-neutral-200">
@@ -82,10 +85,6 @@ function App() {
                       {
                         entityType: "healthcareProfessional",
                         fieldApiName: "c_relatedSpecialty.name",
-                      },
-                      {
-                        entityType: "healthcareProfessional",
-                        fieldApiName: "builtin.medicalSpecialty",
                       },
                       {
                         entityType: "healthcareProfessional",
@@ -130,7 +129,7 @@ function App() {
                     }}
                   />
                   <div className="ml-auto">
-                    Need Further Help? <a>Call 877-426-5637</a>
+                    Need Further Help? <a>Call 1800</a>
                   </div>
                 </div>
                 <div className="flex flex-col gap-y-4 mt-4">

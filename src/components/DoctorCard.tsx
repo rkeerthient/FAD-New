@@ -147,7 +147,10 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ result }) => {
                   href={`tel:${doctor.mainPhone}`}
                   className="hover:underline tracking-widest font-bold text-sm"
                 >
-                  {doctor.mainPhone}
+                  {doctor.mainPhone
+                    .replace("+1", "")
+                    .replace(/\D+/g, "")
+                    .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}
                 </a>
               </div>
             )}
@@ -159,7 +162,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ result }) => {
             </button>
           </div>
         </div>
-        <div className="mt-6 lg:ml-36 text-neutral-500 font-light flex flex-row gap-x-16">
+        <div className="mt-6 lg:px-36 text-neutral-500 font-light flex flex-row justify-between">
           <div>
             <TitledList
               title="Location Information"
@@ -213,7 +216,9 @@ const DoctorCard: React.FC<DoctorCardProps> = ({ result }) => {
         leave="transition ease-in-out duration-75 transform"
         leaveFrom="h-full"
         leaveTo="h-0"
-        className="w-full bg-neutral-100 py-4 text-sm"
+        className={`${
+          expanded ? "block" : "hidden"
+        } w-full bg-neutral-100 py-4 text-sm`}
       >
         <div className="flex flex-row gap-x-14 px-8 pb-4">
           <div className="w-1/3">
