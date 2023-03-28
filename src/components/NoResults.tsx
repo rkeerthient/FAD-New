@@ -5,8 +5,11 @@ export const NoResults = () => {
       your search and try again or select a specialty from the list below. For
       help finding a doctor or scheduling an appointment please call Synergic
       Doctors at{" "}
-      <a href="tel:1-800" className="text-blue-700 cursor-pointer underline">
-        1-800
+      <a
+        href="tel:1800-888-888"
+        className="text-blue-700 cursor-pointer underline"
+      >
+        1800-888-888
       </a>
       .
     </div>
